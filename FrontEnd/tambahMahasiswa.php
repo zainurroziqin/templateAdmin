@@ -12,7 +12,7 @@ if(isset($_POST['submit'])) {
     $prodi = $_POST['prodi'];
 
 
-    $query = "INSERT INTO mahasiswa VALUES('','$nim, '$nama', '$alamat', '$jenisKelamin', '$prodi')";
+    $query = "INSERT INTO mahasiswa (NIM, Nama, Alamat, JenisKelamin, Prodi) VALUES('$nim', '$nama', '$alamat', '$jenisKelamin', '$prodi')";
     $result = mysqli_query($koneksi, $query);
     header('Location: mahasiswa.php');
 }
@@ -86,7 +86,7 @@ if(isset($_POST['submit'])) {
             <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Buat akun</h1>
             </div>
-            <form  class= "user"method="POST" action="tambahmahasiswa.php">
+            <form  class= "user" method="POST" action="">
 
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user"  placeholder="Masukkan Nim..." name="nim" required>

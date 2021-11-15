@@ -1,5 +1,5 @@
 <?php
-    require ('koneksi.php');
+    require('./BackEnd/koneksi.php');
 
     session_start();
 
@@ -71,7 +71,7 @@
 
         <div class="container">
         <h1>Login</h1>
-        <form action="login.php" method="POST">
+        <form action="./FrontEnd/dashboard.php" method="POST">
             <label>Email</label><br>
             <input type="text" name="txt_email"><br>
             <label>Password</label><br>

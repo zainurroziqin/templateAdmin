@@ -10,9 +10,9 @@ if(isset($_POST['submit'])) {
     $prodi = $_POST['prodi'];
 
 
-    $query = "INSERT INTO mahasiswa ('','NIM', 'Nama', 'Alamat', 'JenisKelamin', 'Prodi') VALUES('','$nim, '$nama', '$alamat', '$jenisKelamin', '$prodi')";
+    $query = "INSERT INTO mahasiswa ('','nim', 'nama', 'alamat', 'jenisKelamin', 'prodi') VALUES('','$nim, '$nama', '$alamat', '$jenisKelamin', '$prodi')";
     $result = mysqli_query($koneksi, $query);
-    header('Location: ../FrontEnd/mahasiswa.php');
+    header('Location: ../FrontEnd/tambahMahasiswa.php');
 }
 
 ?>

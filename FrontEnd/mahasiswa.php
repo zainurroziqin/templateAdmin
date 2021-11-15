@@ -1,7 +1,7 @@
 <?php
 include '../BackEnd/koneksi.php';
 ?>
-<!doctype html>
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -64,7 +64,7 @@ include '../BackEnd/koneksi.php';
   </div>
   <div class="col-md-10 p-5 pt-2">
     <h3><i class="fas fa-user-graduate mr-2"></i></i>DAFTAR MAHASISWA</h3><hr>
-    <a href="" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i> DATA MAHASISWA</a>
+    <a href="./tambahMahasiswa.php" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i> DATA MAHASISWA</a>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
