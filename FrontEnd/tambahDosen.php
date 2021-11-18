@@ -1,5 +1,20 @@
 <?php
+// include '../BackEnd/tambahMahasiswa.php';
+
 include '../BackEnd/koneksi.php';
+// include '../FrontEnd/tambahMahasiswa.php';
+
+if(isset($_POST['submit'])) {
+    $nip   = $_POST['nip'];
+    $nidn = $_POST['nidn'];
+    $nama = $_POST['nama'];
+    $jabatan = $_POST['jabatan'];
+
+
+    $query = "INSERT INTO dosen (NIP, NIDN, Nama, Jabatan) VALUES('$nip', '$nidn', '$nama', '$jabatan')";
+    $result = mysqli_query($koneksi, $query);
+    header('Location: dosen.php');
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -63,81 +78,33 @@ include '../BackEnd/koneksi.php';
     </ul>
   </div>
   <div class="col-md-10 p-5 pt-2">
-    <h3><i class="fas fa-user-graduate mr-2"></i></i>DAFTAR DOSEN</h3><hr>
-    <a href="tambahDosen.php" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i> DATA DOSEN</a>
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">No</th>
-          <th scope="col">NIP</th>
-          <th scope="col">NIDN</th>
-          <th scope="col">Nama</th>
-          <th scope="col">Jabatan</th>
-          <th colspan="3" scope="col">AKSI</th>
-        </tr>
-      </thead>
+    <h3><i class="fas fa-tachometer mr-2"></i>Tambah Dosen</h3><hr>
+    <div class="row text-white">
+        <div class="card col-md-7 mx-auto p-5">
+        
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Tambah Dosen</h1>
+            </div>
+            <form  class= "user" method="POST" action="tambahDosen.php">
 
-      <?php
-            $query = "SELECT * FROM dosen";
-            $result = mysqli_query($koneksi, $query);
-            while ($row = mysqli_fetch_array($result)) {
-                $no = $row['No'];
-                $nip = $row["NIP"];
-                $nidn = $row['NIDN'];
-                $nama = $row['Nama'];
-                $jabatan = $row['Jabatan'];
-                
-            ?>
-        <tbody>    
-            <tr>
-                <td><?php echo $no; ?></td>
-                <td><?php echo $nip; ?></td>
-                <td><?php echo $nidn; ?></td>
-                <td><?php echo $nama; ?></td>
-                <td><?php echo $jabatan; ?></td>
-                <td><a href="" class="btn btn-primary">Detail</a></td>
-                <td><a href="updateDosen.php?No=<?= $row["No"]; ?>"  onclick=" return confirm('Apakah anda ingin mengupdate data ?');"><i class="fas fa-edit bg-success p-2 text-white rounded" data-toogle="tooltip" title="Edit"></i></a></td>
-                <td><a href="../BackEnd/deleteDosen.php?No=<?= $row["No"]; ?>"  onclick=" return confirm('Apakah anda ingin menghapus data ?');"><i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toogle="tooltip" title="Delete"></i></a></td>
-                
-            </tr>
-        </tbody> 
-        <?php } ?>
-
-      <!-- <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>1010651098</td>
-          <td>Lukman Hakim</td>
-          <td>Situbondo, 15-01-1989</td>
-          <td>Bondowoso</td>
-          <td><a href="" class="btn btn-primary">Detail</a></td>
-          <td><i class="fas fa-edit bg-success p-2 text-white rounded" data-toogle="tooltip" title="Edit"></i></td>
-          <td><i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toogle="tooltip" title="Delete"></i></td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>1010651099</td>
-          <td>Callista</td>
-          <td>Situbondo, 15-01-1989</td>
-          <td>Bondowoso</td>
-          <td><a href="" class="btn btn-primary">Detail</a></td>
-          <td><i class="fas fa-edit bg-success p-2 text-white rounded" data-toogle="tooltip" title="Edit"></i></td>
-          <td><i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toogle="tooltip" title="Delete"></i></td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>1010651100</td>
-          <td>Khanza</td>
-          <td>Situbondo, 15-01-1989</td>
-          <td>Bondowoso</td>
-          <td><a href="" class="btn btn-primary">Detail</a></td>
-          <td><i class="fas fa-edit bg-success p-2 text-white rounded" data-toogle="tooltip" title="Edit"></i></td>
-          <td><i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toogle="tooltip" title="Delete"></i></td>
-        </tr>
-
-      </tbody> -->
-    </table>
-    
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user"  placeholder="Masukkan NIP..." name="nip" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user"  placeholder="Masukkan NIDN..." name="nidn" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Masukkan Nama..." name="nama" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user"  placeholder="Masukkan Jabatan..." name="jabatan" required autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-primary btn-user btn-block" name="submit">
+                    Tambah Dosen
+                </button>
+            </form>
+        </div>
+    </div>
   </div>
 </div>
 <!-- Akhir Content-->

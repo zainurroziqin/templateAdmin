@@ -2,6 +2,12 @@
 
 include 'koneksi.php';
 
+// session_start();
+// if(!isset($_SESSION['id'])) {
+//     $_SESSION['msg'] = 'anda harus login untuk mengakses halaman ini';
+//     header("Location: ../index.php");
+// }
+
 $mahasiswa = "SELECT * FROM mahasiswa";
 
 $data_mahasiswa = mysqli_query($koneksi, $mahasiswa);

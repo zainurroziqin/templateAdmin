@@ -1,6 +1,16 @@
 <?php
 
+session_start();
 include '../BackEnd/dashboard.php';
+
+// if(!isset($_SESSION['id'])) {
+//     $_SESSION['msg'] = 'anda harus login untuk mengakses halaman ini';
+//     header("Location: ../index.php");
+// }
+
+//     $sesID = $_SESSION['id'];
+//     $sesName = $_SESSION['name'];
+
 ?>
 <!doctype html>
 <html lang="en">

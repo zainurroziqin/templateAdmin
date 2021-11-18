@@ -64,7 +64,7 @@ include '../BackEnd/koneksi.php';
   </div>
   <div class="col-md-10 p-5 pt-2">
     <h3><i class="fas fa-user-graduate mr-2"></i></i>DAFTAR PEGAWAI</h3><hr>
-    <a href="" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i> DATA PEGAWAI</a>
+    <a href="tambahPegawai.php" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i> DATA PEGAWAI</a>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
@@ -93,8 +93,8 @@ include '../BackEnd/koneksi.php';
                 <td><?php echo $nama; ?></td>
                 <td><?php echo $jabatan; ?></td>
                 <td><a href="" class="btn btn-primary">Detail</a></td>
-                <td><i class="fas fa-edit bg-success p-2 text-white rounded" data-toogle="tooltip" title="Edit"></i></td>
-                <td><i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toogle="tooltip" title="Delete"></i></td>
+                <td><a href="updatePegawai.php?No=<?= $row["No"]; ?>"  onclick=" return confirm('Apakah anda ingin mengupdate data ?');"><i class="fas fa-edit bg-success p-2 text-white rounded" data-toogle="tooltip" title="Edit"></i></a></td>
+                <td><a href="../BackEnd/deletePegawai.php?No=<?= $row["No"]; ?>"  onclick=" return confirm('Apakah anda ingin menghapus data ?');"><i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toogle="tooltip" title="Delete"></i></a></td>
                 
             </tr>
         </tbody> 

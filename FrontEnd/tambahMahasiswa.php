@@ -1,6 +1,6 @@
 <?php
-
 // include '../BackEnd/tambahMahasiswa.php';
+
 include '../BackEnd/koneksi.php';
 // include '../FrontEnd/tambahMahasiswa.php';
 
@@ -86,16 +86,16 @@ if(isset($_POST['submit'])) {
             <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Buat akun</h1>
             </div>
-            <form  class= "user" method="POST" action="">
+            <form  class= "user" method="POST" action="tambahMahasiswa.php">
 
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user"  placeholder="Masukkan Nim..." name="nim" required>
+                    <input type="text" class="form-control form-control-user"  placeholder="Masukkan Nim..." name="nim" required autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user"  placeholder="Masukkan Nama..." name="nama" required>
+                    <input type="text" class="form-control form-control-user"  placeholder="Masukkan Nama..." name="nama" required autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" placeholder="Masukkan Alamat..." name="alamat" required>
+                    <input type="text" class="form-control form-control-user" placeholder="Masukkan Alamat..." name="alamat" required autocomplete="off">
                 </div>
                 <div class="form-group">
                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="jenisKelamin"  required>
@@ -106,7 +106,7 @@ if(isset($_POST['submit'])) {
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user"  placeholder="Masukkan Prodi..." name="prodi" required>
+                    <input type="text" class="form-control form-control-user"  placeholder="Masukkan Prodi..." name="prodi" required autocomplete="off">
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block" name="submit">
                     Buat Akun

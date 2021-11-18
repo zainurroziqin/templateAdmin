@@ -1,5 +1,9 @@
 <?php
 include '../BackEnd/koneksi.php';
+
+// $mahasiswa = "SELECT * FROM mahasiswa";
+
+// $data_mahasiswa = mysqli_query($koneksi, $mahasiswa);
 ?>
 
 <html lang="en">
@@ -64,7 +68,7 @@ include '../BackEnd/koneksi.php';
   </div>
   <div class="col-md-10 p-5 pt-2">
     <h3><i class="fas fa-user-graduate mr-2"></i></i>DAFTAR MAHASISWA</h3><hr>
-    <a href="./tambahMahasiswa.php" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i> DATA MAHASISWA</a>
+    <a href="tambahMahasiswa.php" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i> DATA MAHASISWA</a>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
@@ -79,10 +83,11 @@ include '../BackEnd/koneksi.php';
       </thead>
 
       <?php
+            $no = 1;
             $query = "SELECT * FROM mahasiswa";
             $result = mysqli_query($koneksi, $query);
             while ($row = mysqli_fetch_array($result)) {
-                $no = $row['No'];
+                // $no = $row['No'];
                 $nim = $row["NIM"];
                 $nama = $row['Nama'];
                 $alamat = $row['Alamat'];
@@ -98,12 +103,13 @@ include '../BackEnd/koneksi.php';
                 <td><?php echo $jeniskelamin; ?></td>
                 <td><?php echo $prodi; ?></td>
                 <td><a href="" class="btn btn-primary">Detail</a></td>
-                <td><i class="fas fa-edit bg-success p-2 text-white rounded" data-toogle="tooltip" title="Edit"></i></td>
-                <td><i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toogle="tooltip" title="Delete"></i></td>
+                <!-- <td><i class="fas fa-edit bg-success p-2 text-white rounded" data-toogle="tooltip" title="Edit"></i></td> -->
+                <td><a href="updateMahasiswa.php?No=<?= $row["No"]; ?>"  onclick=" return confirm('Apakah anda ingin mengupdate data ?');"><i class="fas fa-edit bg-success p-2 text-white rounded" data-toogle="tooltip" title="Edit"></i></a></td>
+                <td><a href="../BackEnd/deleteMahasiswa.php?No=<?= $row["No"]; ?>"  onclick=" return confirm('Apakah anda ingin menghapus data ?');"><i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toogle="tooltip" title="Delete"></i></a></td>
                 
             </tr>
         </tbody> 
-        <?php } ?>
+        <?php $no++;} ?>
 
       <!-- <tbody>
         <tr>

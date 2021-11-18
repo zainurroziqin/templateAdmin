@@ -1,6 +1,36 @@
 <?php
-include '../BackEnd/koneksi.php';
+include ('../BackEnd/koneksi.php');
+
+$no = $_GET['No'];
+
+$querySelect = "SELECT * FROM mahasiswa WHERE No='$no'";
+$result = mysqli_query($koneksi, $querySelect);
+
+    while($row = mysqli_fetch_array($result)) {
+        $no = $row['No'];
+        $nim = $row['NIM'];
+        $nama= $row['Nama'];
+        $alamat = $row['Alamat'];
+        $jenisKelamin = $row['JenisKelamin'];
+        $prodi = $row['Prodi'];
+    }
+
+if(isset($_POST['submit'])) {
+    $no = $_POST['no'];
+    $nim   = $_POST['nim'];
+    $nama = $_POST['nama'];
+    $alamat = $_POST['alamat'];
+    $jenisKelamin = $_POST['jenisKelamin'];
+    $prodi = $_POST['prodi'];
+
+    $query = "UPDATE mahasiswa SET NIM = '$nim', Nama = '$nama', Alamat = '$alamat', JenisKelamin = '$jenisKelamin', Prodi = '$prodi' WHERE No = '$no'";
+    $result = mysqli_query($koneksi, $query);
+    header("Location: mahasiswa.php");
+    
+}
+
 ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -63,81 +93,43 @@ include '../BackEnd/koneksi.php';
     </ul>
   </div>
   <div class="col-md-10 p-5 pt-2">
-    <h3><i class="fas fa-user-graduate mr-2"></i></i>DAFTAR DOSEN</h3><hr>
-    <a href="tambahDosen.php" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i> DATA DOSEN</a>
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">No</th>
-          <th scope="col">NIP</th>
-          <th scope="col">NIDN</th>
-          <th scope="col">Nama</th>
-          <th scope="col">Jabatan</th>
-          <th colspan="3" scope="col">AKSI</th>
-        </tr>
-      </thead>
+    <h3><i class="fas fa-tachometer mr-2"></i>Tambah Mahasiswa</h3><hr>
+    <div class="row text-white">
+        <div class="card col-md-7 mx-auto p-5">
+        
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Buat akun</h1>
+            </div>
+            <form  class= "user" method="POST" action="updateMahasiswa.php">
 
-      <?php
-            $query = "SELECT * FROM dosen";
-            $result = mysqli_query($koneksi, $query);
-            while ($row = mysqli_fetch_array($result)) {
-                $no = $row['No'];
-                $nip = $row["NIP"];
-                $nidn = $row['NIDN'];
-                $nama = $row['Nama'];
-                $jabatan = $row['Jabatan'];
-                
-            ?>
-        <tbody>    
-            <tr>
-                <td><?php echo $no; ?></td>
-                <td><?php echo $nip; ?></td>
-                <td><?php echo $nidn; ?></td>
-                <td><?php echo $nama; ?></td>
-                <td><?php echo $jabatan; ?></td>
-                <td><a href="" class="btn btn-primary">Detail</a></td>
-                <td><a href="updateDosen.php?No=<?= $row["No"]; ?>"  onclick=" return confirm('Apakah anda ingin mengupdate data ?');"><i class="fas fa-edit bg-success p-2 text-white rounded" data-toogle="tooltip" title="Edit"></i></a></td>
-                <td><a href="../BackEnd/deleteDosen.php?No=<?= $row["No"]; ?>"  onclick=" return confirm('Apakah anda ingin menghapus data ?');"><i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toogle="tooltip" title="Delete"></i></a></td>
-                
-            </tr>
-        </tbody> 
-        <?php } ?>
+              <input type="hidden" name="no" value="<?php echo $no ?>">
 
-      <!-- <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>1010651098</td>
-          <td>Lukman Hakim</td>
-          <td>Situbondo, 15-01-1989</td>
-          <td>Bondowoso</td>
-          <td><a href="" class="btn btn-primary">Detail</a></td>
-          <td><i class="fas fa-edit bg-success p-2 text-white rounded" data-toogle="tooltip" title="Edit"></i></td>
-          <td><i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toogle="tooltip" title="Delete"></i></td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>1010651099</td>
-          <td>Callista</td>
-          <td>Situbondo, 15-01-1989</td>
-          <td>Bondowoso</td>
-          <td><a href="" class="btn btn-primary">Detail</a></td>
-          <td><i class="fas fa-edit bg-success p-2 text-white rounded" data-toogle="tooltip" title="Edit"></i></td>
-          <td><i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toogle="tooltip" title="Delete"></i></td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>1010651100</td>
-          <td>Khanza</td>
-          <td>Situbondo, 15-01-1989</td>
-          <td>Bondowoso</td>
-          <td><a href="" class="btn btn-primary">Detail</a></td>
-          <td><i class="fas fa-edit bg-success p-2 text-white rounded" data-toogle="tooltip" title="Edit"></i></td>
-          <td><i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toogle="tooltip" title="Delete"></i></td>
-        </tr>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user"  placeholder="Masukkan Nim..." name="nim" value="<?php echo $nim?>" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user"  placeholder="Masukkan Nama..." name="nama" value="<?php echo $nama?>" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Masukkan Alamat..." name="alamat" value="<?php echo $alamat?>" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="jenisKelamin"  required>
+                        <option selected="">Masukkan Jenis Kelamin...</option>
+                        <option value="Laki-laki" <?php if ($jenisKelamin == 'Laki-laki') {echo "selected";} ?>>Laki-laki</option>
+                        <option value="Perempuan" <?php if ($jenisKelamin == 'Perempuan') {echo "selected";} ?>>Perempuan</option>
 
-      </tbody> -->
-    </table>
-    
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user"  placeholder="Masukkan Prodi..." name="prodi" value=<?php echo $prodi;?> required autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-primary btn-user btn-block" name="submit">
+                    Update Mahasiswa
+                </button>
+            </form>
+        </div>
+    </div>
   </div>
 </div>
 <!-- Akhir Content-->

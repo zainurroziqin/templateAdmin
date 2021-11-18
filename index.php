@@ -28,18 +28,11 @@
                 if($userVal==$email && $passVal==$password) {
                     // header('Location: home.php?user_fullname=' . urlencode($userName));
                     //Pembuatan session
+                        $_SESSION['id'] = $id;
+                        $_SESSION['name'] = $userName;
+                        $_SESSION['level'] = $level;
+                        header ('Location: FrontEnd/dashboard.php');
                     
-                    if($level=='1'){
-                        $_SESSION['id'] = $id;
-                        $_SESSION['name'] = $userName;
-                        $_SESSION['level'] = $level;
-                        header ('Location: homeAdmin.php');
-                    }else{
-                        $_SESSION['id'] = $id;
-                        $_SESSION['name'] = $userName;
-                        $_SESSION['level'] = $level;
-                        header ('Location: homeUser.php');
-                    }
 
                     
                 } else {
@@ -71,7 +64,7 @@
 
         <div class="container">
         <h1>Login</h1>
-        <form action="./FrontEnd/dashboard.php" method="POST">
+        <form action="index.php" method="POST">
             <label>Email</label><br>
             <input type="text" name="txt_email"><br>
             <label>Password</label><br>
